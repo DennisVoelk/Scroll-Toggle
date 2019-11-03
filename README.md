@@ -1,4 +1,4 @@
-![Image of Logo](.github/logo.png)
+![Image of Logo](logo.png)
 <p align="center", style="width: 50%;">
 <h3 align="center">Easily add scroll animations to elements, with or without JavaScript.</h3>
 </p>
