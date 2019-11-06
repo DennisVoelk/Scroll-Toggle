@@ -169,5 +169,3 @@ class Scrolldini {
     }
   }
 }
-
-const scroll = new Scrolldini("sd", "sd", true, true);

@@ -11,10 +11,11 @@ Scrolldini lets you easily add animations or CSS-classes to an element when it e
 <br><br>
 
 <h1>How do you use Scrolldini?</h1>
-<b>Step 1:</b> Add the script to your document.<br>
+<b>Step 1:</b> Add the script to your document and initialize Scrolldini.<br>
 
 ```html
 <script src="scrolldini.js"></script>
+<script>const scrolldini = new Scrolldini("sd", "sd", true, true);</script>
 ```
 
 
@@ -76,6 +77,42 @@ sd-clear-bottom="150"
 <br><br>
 <h1>JavaScript usage</h1>
 You can also access all Scrolldini functions via JavaScript.
+
+<b>The Scrolldini class</b><br>
+``` javascript
+new Scrolldini(className, prefix, checkOnLoad, checkOnResize);
+```
+<i>Parameters</i>
+ - <i>classname</i>: The classname which is used for detecting Scrolldini elements.
+ - <i>prefix</i>: The prefix of the HTML attributes. <i>E.g.: prefix-toggle-class</i>
+ - <i>checkOnLoad</i>: Whether actions should be triggered automatically when the page is loaded.
+ - <i>checkOnResize</i>: Whether actions should be triggered automatically on page resizing.
+
+<br><br>
+
+<b>The ScrolldiniElement class</b><br>
+``` javascript
+new ScrolldiniElement(DOMElement, prefix);
+```
+<i>Parameters</i>
+ - <i>DOMElement</i>: A reference the the DOM element.
+ - <i>prefix</i>: The prefix of the HTML attributes. <i>E.g.: prefix-toggle-class</i>
+
+<br><br>
+
+<b>Adding a DOM element to Scrolldini</b><br>
+``` javascript
+var myElement = document.getElementById("box");
+const scrolldini = new Scrolldini("sd", "sd", true, true);
+scrolldini.addElement(myElement)
+```
+You can also manually create a ScrolldiniElement and add it to your Scrolldini object.
+``` javascript
+var myDOMElement = document.getElementById("box");
+const scrolldini = new Scrolldini("sd", "sd", true, true);
+const myScrolldiniElement = new ScrolldiniElement(myDOMElement, "sd")
+scrolldini.addElement(myScrolldiniElement)
+```
 
 <br><br>
 <div style="width: 100%; text-align: center; padding: 10px; background-color: #364bbf; border: 0px transparent solid; border-radius: 10px; text-color: #f8f8f8; font-weight: bold;">To be continued..</div>
