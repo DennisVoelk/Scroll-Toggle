@@ -33,12 +33,22 @@ html, body{
     background-color: rgb(70, 235, 37);
 }
 
-.slide-in-right{
+.slide-in-left{
     transform: translateX(-100%);
     transition: 1s ease-in-out;
 }
 
+.slide-in-left-active{
+    transform: translateX(0%) !important;
+    transition: 1s ease-in-out !important;
+}
+
+.slide-in-right{
+    margin-left: 100%;
+    transition: 1s ease-in-out;
+}
+
 .slide-in-right-active{
-    transform: translateX(0) !important;
+    margin-left: 0% !important;
     transition: 1s ease-in-out !important;
 }

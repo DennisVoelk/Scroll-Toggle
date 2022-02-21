@@ -1,8 +1,6 @@
 class ScrolldiniElement {
-  constructor(DOMElement, prefix) {
-    if(prefix === undefined){
-      prefix = "sd"
-    }
+
+  constructor(DOMElement, prefix="sd") {
     this.el = DOMElement;
     this.toggleClass = "";
     this.removeClass = "";
@@ -92,80 +90,62 @@ class ScrolldiniElement {
 }
 
 class Scrolldini {
-  constructor(className, prefix, checkOnLoad, checkOnResize) {
-    if(checkOnLoad === undefined) {
-      checkOnLoad = true;
-    }
-    if(className === undefined) {
-      className = "sd";
-    }
-    if(prefix === undefined) {
-      prefix = "sd";
-    }
-    if(checkOnResize === undefined) {
-      checkOnResize = true;
-    }
-    this.prefix = prefix;
+  static elements = [];
+  static prefix = "sd";
+  static visibleElements = [];
 
-    const elementsRaw = document.getElementsByClassName(className);
-    this.elements = [];
-    this.visibleElements = [];
-    console.log(checkOnLoad)
-
-    for (let i = 0; i < elementsRaw.length; i++) {
-      const el = elementsRaw[i];
-      this.elements.push(new ScrolldiniElement(el, (prefix = prefix)));
-    }
-
-    window.addEventListener("scroll", this.checkVisibility.bind(this));
-    if(checkOnResize){
-      window.addEventListener("resize", this.checkVisibility.bind(this));
-    }
-    if(checkOnLoad){
-      this.checkVisibility();
-    }
+  static constructor() {
   }
 
-  checkVisibility() {
-    for (let i = 0; i < this.visibleElements.length; i++) {
-      const el = this.visibleElements[i];
-      if (!this.isElementInViewport(el.el, el.clearTop, el.clearBottom)) {
+  static checkVisibility() {
+    console.log("tet");
+    for (let i = 0; i < Scrolldini.visibleElements.length; i++) {
+      const el = Scrolldini.visibleElements[i];
+      if (!Scrolldini.isElementInViewport(el.el, el.clearTop, el.clearBottom)) {
         el.visble = false;
         el.hide();
-        this.visibleElements.splice(this.visibleElements.indexOf(el));
+        Scrolldini.visibleElements.splice(Scrolldini.visibleElements.indexOf(el));
       }
     }
 
-    for (let i = 0; i < this.elements.length; i++) {
-      const el = this.elements[i];
+    for (let i = 0; i < Scrolldini.elements.length; i++) {
+      const el = Scrolldini.elements[i];
       if (
-        this.isElementInViewport(el.el, el.clearTop, el.clearBottom) &&
-        !this.visibleElements.includes(el)
+        Scrolldini.isElementInViewport(el.el, el.clearTop, el.clearBottom) &&
+        !Scrolldini.visibleElements.includes(el)
       ) {
         el.visble = true;
         el.show();
-        this.visibleElements.push(el);
+        Scrolldini.visibleElements.push(el);
       }
     }
   }
 
-  isElementInViewport(el, clearTop, clearBottom) {
+  static isElementInViewport(el, clearTop, clearBottom) {
     var rect = el.getBoundingClientRect();
     return (
       rect.bottom > 0 + clearTop &&
       rect.top <
         (window.innerHeight || document.documentElement.clientHeight) -
-          clearBottom /* or $(window).height() */
+          clearBottom
     );
   }
 
-  addElement(element) {
+  static addElement(element) {
     if (typeof element == "object") {
       if (element.constructor.name == "ScrolldiniElement") {
-        this.elements.push(element);
+        Scrolldini.elements.push(element);
       }
     } else {
-      this.elements.push(new ScrolldiniElement(element, this.prefix));
+      Scrolldini.elements.push(new ScrolldiniElement(element, Scrolldini.prefix));
     }
   }
+}
+
+window.addEventListener("scroll", Scrolldini.checkVisibility);
+
+const elementsRaw = document.getElementsByClassName("sd");
+for (let i = 0; i < elementsRaw.length; i++) {
+  const el = elementsRaw[i];
+  Scrolldini.addElement(new ScrolldiniElement(el, "sd"));
 }

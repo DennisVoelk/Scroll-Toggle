@@ -7,12 +7,14 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="padding">Padding</div>
+    <div class="padding">Add class, no clear area</div>
     <div class="box slide-in-right sd" id="box2" sd-add-class="slide-in-right-active">Slide in from the right side</div>
-    <div class="padding">Padding</div>
-    <div class="box slide-in-right sd" id="box3" sd-toggle-class="slide-in-right-active" sd-clear-top="150" sd-clear-bottom="150">Box 3</div>
-    <div class="padding">Padding</div>
+    <div class="padding">Toggle class, clear area of 500 for scrolling to the bottom, 50 for scrolling to the top</div>
+    <div class="box slide-in-left sd" id="box3" sd-toggle-class="slide-in-left-active" sd-clear-top="50" sd-clear-bottom="500">Slide in from left</div>
+    <div class="padding"></div>
+    <div class="padding"></div>
+    <div class="padding"></div>
 </body>
 <script src="../scrolldini.js"></script>
-<script>const scrolldini = new Scrolldini("sd", "sd", true, true);</script>
+<script>Scrolldini.checkVisibility()</script>
 </html>
