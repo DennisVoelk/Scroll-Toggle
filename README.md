@@ -4,11 +4,11 @@ The no-code solution to toggle classes of HTML elements when they become visible
 
 ## How to use
 
-First, add the script to your document:
+First, add the script to your document:<br>
 `<script src="scroll-toggle.js"></script>`
 
 
-Then you can add the desired attribute together with the class you want to add or toggle:
+Then you can add the desired attribute together with the class you want to add or toggle:<br>
 `<div id="myElement" onshow="myClass"></div>`
 
 ## The attributes
@@ -31,8 +31,8 @@ Similar to whilevisible, but will trigger only when the entire elment is visible
 ### scrollvisibilitymargin
 This attribute can be added to the document body (to affect all elements) or to the individual elements. It virtually shrinks the viewport, meaning that the class would be added/removed only if the element is further inside the viewport.
 The value defined in the elements would overrule the value defined in the body.
-<br>
-`<div id="myElement" whilefullyvisible="myClass" scrollvisibilitymargin="200"></div>`
+<br><br>
+`<div id="myElement" whilefullyvisible="myClass" scrollvisibilitymargin="200"></div>`<br>
 This would mean that "myClass" will only be added/removed to the class-list if the entire element is at least 200px away from the top and bottom of the viewport.
 
 ## Manually check the visibility of all elements
